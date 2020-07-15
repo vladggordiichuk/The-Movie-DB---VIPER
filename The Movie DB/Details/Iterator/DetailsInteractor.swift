@@ -33,6 +33,10 @@ final class DetailsInteractor: DetailsInteractorInputProtocol {
     }
     
     deinit {
-        urlTask?.cancel()
+        
+        guard let urlTask = urlTask else { return }
+        
+        urlTask.suspend()
+        urlTask.cancel()
     }
 }

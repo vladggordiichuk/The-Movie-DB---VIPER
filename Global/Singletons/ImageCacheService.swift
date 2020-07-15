@@ -22,10 +22,6 @@ final class ImageCacheService {
     
     static func getImage(for imageView: UIImageView, with url: URL, onBeginLoading: @escaping () -> Void, completion: @escaping (UIImage) -> Void) {
         
-        print(ImageCacheService.shared.request[imageView]?.state)
-        
-        ImageCacheService.cancelGetImage(for: imageView)
-        
         let nsString = NSString(string: url.absoluteString)
         
         if let cachedImage = hasImageCached(for: nsString) {
@@ -34,10 +30,10 @@ final class ImageCacheService {
             
             onBeginLoading()
             
-            let urlTask = NetworkManager.shared.loadImage(with: url) { (result: Result<Data>) in
-                
-                //ImageCacheService.shared.request[imageView] = nil
-                
+            //ImageCacheService.cancelGetImage(for: imageView)
+            
+            let urlTask = NetworkManager.shared.loadImage(with: url) { [unowned imageView] (result: Result<Data>) in
+                                
                 switch result {
                 case .success(let data):
                     let image = UIImage(data: data)!
@@ -53,23 +49,29 @@ final class ImageCacheService {
     
     static func cancelGetImage(for imageView: UIImageView) {
         
-//        ImageCacheService.shared.request[imageView]?.cancel()
-//        ImageCacheService.shared.request[imageView] = nil
+        if let urlTask = ImageCacheService.shared.request[imageView] {
+            urlTask.suspend()
+            urlTask.cancel()
+            ImageCacheService.shared.request[imageView] = nil
+        }
     }
 }
 
-extension UIImageView {
+extension LoadableImageView {
     
     func setImage(with url: URL?) {
         
         guard let url = url else { return }
         
+        image = nil
+        
         ImageCacheService.getImage(for: self, with: url, onBeginLoading: { [weak self] in
             DispatchQueue.main.async {
-                self?.image = UIImage(named: "Raw-Image")
+                self?.showActivityIndicator()
             }
         }) { [weak self] image in
             DispatchQueue.main.async {
+                self?.hideActivityIndicator()
                 self?.image = image
             }
         }

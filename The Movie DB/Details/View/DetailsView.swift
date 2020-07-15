@@ -24,11 +24,17 @@ final class DetailsView: UIViewController, DetailsViewProtocol {
         return scrollView
     }()
     
-    private var posterImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.backgroundColor = .lightGray
+    private var activityView: UIActivityIndicatorView = {
+        let activityView = UIActivityIndicatorView(style: .large)
+        activityView.translatesAutoresizingMaskIntoConstraints = false
+        return activityView
+    }()
+    
+    private var posterImageView: LoadableImageView = {
+        let imageView = LoadableImageView()
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 10
+        imageView.layer.masksToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -82,6 +88,10 @@ final class DetailsView: UIViewController, DetailsViewProtocol {
         
         scrollView.addSubview(contentView)
         
+        scrollView.addSubview(activityView)
+        
+        activityView.startAnimating()
+        
         contentView.addSubview(posterImageView)
         
         contentView.addSubview(detailsStackView)
@@ -91,6 +101,9 @@ final class DetailsView: UIViewController, DetailsViewProtocol {
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             scrollView.leftAnchor.constraint(equalTo: view.leftAnchor),
             scrollView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            
+            activityView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),
+            activityView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             
             contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
@@ -111,6 +124,8 @@ final class DetailsView: UIViewController, DetailsViewProtocol {
     }
     
     func applyMovieDetails(with movie: Movie) {
+        
+        activityView.stopAnimating()
         
         posterImageView.setImage(with: movie.poster)
         
