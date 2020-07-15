@@ -18,6 +18,10 @@ final class ListPresenter: ListPresenterProtocol {
         interactor?.retrieveMovies(false)
     }
     
+    func fetchMovieList() {
+        interactor?.retrieveMovies(false)
+    }
+    
     func showMovieDetails(from view: ListViewProtocol, with movie: Movie) {
         wireFrame?.presentMovieDetailScreen(from: view, with: movie)
     }

@@ -29,6 +29,7 @@ protocol ListPresenterProtocol: class {
     var wireFrame: ListWireFrameProtocol? { get set }
     
     func viewDidLoad()
+    func fetchMovieList()
     func showMovieDetails(from view: ListViewProtocol, with movie: Movie)
 }
 

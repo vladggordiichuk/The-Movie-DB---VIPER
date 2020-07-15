@@ -32,6 +32,7 @@
 		7FC1A39624BEFB6100D4F927 /* PaginationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC1A39524BEFB6100D4F927 /* PaginationRequest.swift */; };
 		7FC1A39924BF0C2D00D4F927 /* ImageCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC1A39824BF0C2D00D4F927 /* ImageCacheService.swift */; };
 		7FC1A39C24BF3DB100D4F927 /* LoadableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC1A39B24BF3DB000D4F927 /* LoadableImageView.swift */; };
+		7FC1A39F24BF4E5F00D4F927 /* NSLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC1A39E24BF4E5F00D4F927 /* NSLayoutConstraint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		7FC1A39524BEFB6100D4F927 /* PaginationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationRequest.swift; sourceTree = "<group>"; };
 		7FC1A39824BF0C2D00D4F927 /* ImageCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheService.swift; sourceTree = "<group>"; };
 		7FC1A39B24BF3DB000D4F927 /* LoadableImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableImageView.swift; sourceTree = "<group>"; };
+		7FC1A39E24BF4E5F00D4F927 /* NSLayoutConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +176,7 @@
 				7FC1A36424BE25EF00D4F927 /* Entities */,
 				7FC1A39724BF0C1200D4F927 /* Singletons */,
 				7FC1A39A24BF3D8900D4F927 /* Custom UI */,
+				7FC1A39D24BF4E4400D4F927 /* Extensions */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -316,6 +319,14 @@
 			path = "Custom UI";
 			sourceTree = "<group>";
 		};
+		7FC1A39D24BF4E4400D4F927 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7FC1A39E24BF4E5F00D4F927 /* NSLayoutConstraint.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -393,6 +404,7 @@
 				7FC1A36824BE266C00D4F927 /* ListWireFrame.swift in Sources */,
 				7FC1A38A24BEF07900D4F927 /* EmptyRequest.swift in Sources */,
 				7FC1A37824BE461000D4F927 /* DetailsWireFrame.swift in Sources */,
+				7FC1A39F24BF4E5F00D4F927 /* NSLayoutConstraint.swift in Sources */,
 				7FC1A36C24BE272D00D4F927 /* ListPresenter.swift in Sources */,
 				7FC1A39624BEFB6100D4F927 /* PaginationRequest.swift in Sources */,
 				7FC1A37C24BE4A4200D4F927 /* DetailsView.swift in Sources */,

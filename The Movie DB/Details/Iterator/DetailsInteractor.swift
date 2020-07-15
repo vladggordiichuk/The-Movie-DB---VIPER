@@ -11,8 +11,6 @@ import Foundation
 final class DetailsInteractor: DetailsInteractorInputProtocol {
     
     weak var presenter: DetailsInteractorOutputProtocol?
-    var APIDataManager: DetailsAPIDataManagerInputProtocol?
-    var localDatamanager: DetailsLocalDataManagerInputProtocol?
     
     var movie: Movie?
     var urlTask: URLSessionTask?

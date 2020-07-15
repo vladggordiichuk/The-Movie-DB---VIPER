@@ -11,8 +11,8 @@ import UIKit
 final class ListView: UITableViewController {
     
     var presenter: ListPresenterProtocol?
-    var movieList: [Movie] = []
-    var movieSearchList: [Movie] = []
+    
+    private var movieList: [Movie] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +30,10 @@ extension ListView: ListViewProtocol {
     func reloadInterface(with movies: [Movie]) {
         
         movieList += movies
-        tableView.reloadData()
+        
+        tableView.beginUpdates()
+        tableView.insertRows(at: ((movieList.count - movies.count) ..< movieList.count).map({ IndexPath(row: $0, section: 0) }), with: .automatic)
+        tableView.endUpdates()
     }
 }
 
@@ -59,7 +62,7 @@ extension ListView {
         guard let currentMaxRow = tableView.indexPathsForVisibleRows?.max(by: { $0.row < $1.row })?.row else { return }
         
         if currentMaxRow > movieList.count - 4 {
-            presenter?.interactor?.retrieveMovies(false)
+            presenter?.fetchMovieList()
         }
     }
 }

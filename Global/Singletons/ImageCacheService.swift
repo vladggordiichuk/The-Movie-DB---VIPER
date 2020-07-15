@@ -30,16 +30,16 @@ final class ImageCacheService {
             
             onBeginLoading()
             
-            //ImageCacheService.cancelGetImage(for: imageView)
-            
-            let urlTask = NetworkManager.shared.loadImage(with: url) { [unowned imageView] (result: Result<Data>) in
+            let urlTask = NetworkManager.shared.loadImage(with: url) { [weak imageView] (result: Result<Data>) in
                                 
                 switch result {
                 case .success(let data):
                     let image = UIImage(data: data)!
                     ImageCacheService.shared.cache.setObject(image, forKey: nsString)
                     completion(image)
-                case .failure(let error): print(error.localizedDescription)
+                case .failure(let error):
+                    guard error != .requestCanceled, let imageView = imageView else { return }
+                    ImageCacheService.getImage(for: imageView, with: url, onBeginLoading: onBeginLoading, completion: completion)
                 }
             }
             

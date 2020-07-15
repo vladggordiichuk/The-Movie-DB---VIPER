@@ -69,9 +69,8 @@ final class ListTableCell: UITableViewCell {
             posterImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 30),
             posterImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -30),
             posterImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 30),
-            posterImageView.heightAnchor.constraint(equalToConstant: 150),
+            posterImageView.heightAnchor.constraint(equalToConstant: 150).withPriority(.defaultHigh),
             posterImageView.widthAnchor.constraint(equalToConstant: 90),
-            
             
             textStackView.centerYAnchor.constraint(equalTo: posterImageView.centerYAnchor),
             textStackView.leftAnchor.constraint(equalTo: posterImageView.rightAnchor, constant: 25),

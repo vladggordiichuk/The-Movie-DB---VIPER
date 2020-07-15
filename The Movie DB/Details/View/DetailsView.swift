@@ -181,4 +181,8 @@ final class DetailsView: UIViewController, DetailsViewProtocol {
 
         present(alert, animated: true)
     }
+    
+    deinit {
+        posterImageView.cancelSetImage()
+    }
 }

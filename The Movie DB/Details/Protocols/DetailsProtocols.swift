@@ -34,35 +34,16 @@ protocol DetailsPresenterProtocol: class {
 }
 
 protocol DetailsInteractorOutputProtocol: class {
-    /**
-    * Add here your methods for communication INTERACTOR -> PRESENTER
-    */
-    func didRetrieveMovie(_ movie: Movie)
     
+    func didRetrieveMovie(_ movie: Movie)
     func didFailRequest(_ reason: String)
 }
 
 protocol DetailsInteractorInputProtocol: class {
     
     var presenter: DetailsInteractorOutputProtocol? { get set }
-    var APIDataManager: DetailsAPIDataManagerInputProtocol? { get set }
-    var localDatamanager: DetailsLocalDataManagerInputProtocol? { get set }
     
     var movie: Movie? { get set }
 
-    // PRESENTER -> INTERACTOR
     func retrieveMovie()
-}
-
-protocol DetailsAPIDataManagerInputProtocol: class {
-    /**
-    * Add here your methods for communication INTERACTOR -> APIDATAMANAGER
-    */
-}
-
-protocol DetailsLocalDataManagerInputProtocol: class {
-    /**
-    * Add here your methods for communication INTERACTOR -> LOCALDATAMANAGER
-    */
-    func createContact(firstName: String, lastName: String) throws -> Movie
 }
